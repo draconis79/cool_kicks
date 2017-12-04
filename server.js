@@ -16,12 +16,15 @@ db.on('error', (err) => console.log(err.message));
 db.on('connected', () => console.log('Mongo running: ', mongoURI));
 
 // controllers
-app.use('/sneakers', sneakersController);
+const sneakersController = require('./controllers/sneakers.js');
+const brandsController = require('./controllers/brands.js');
 
 // middleware
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use('/sneakers', sneakersController);
+app.use('/brands', brandsController);
 
 // root route
 app.get('/', (req, res) => res.redirect('/sneakers'));

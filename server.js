@@ -5,8 +5,10 @@ const morgan   = require('morgan');
 const app      = express();
 const PORT     = 3000;
 
+// process.env.MONGOB_URI
 // connect to database
-const mongoURI = 'mongodb://localhost:27017/cool-kicks';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cool-kicks';
+
 mongoose.connect(mongoURI, { useMongoClient: true});
 mongoose.Promise = global.Promise;
 

@@ -3,7 +3,7 @@ const express  = require('express');
 const mongoose = require('mongoose');
 const morgan   = require('morgan');
 const app      = express();
-const PORT     = 3000;
+const PORT     = process.env.PORT || 3000;
 
 // process.env.MONGOB_URI
 // connect to database

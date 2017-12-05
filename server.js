@@ -24,6 +24,7 @@ const brandsController = require('./controllers/brands.js');
 // middleware
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
+app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use('/sneakers', sneakersController);
 app.use('/brands', brandsController);

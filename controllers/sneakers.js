@@ -4,7 +4,7 @@ const methodOverride = require('method-override');
 
 // models
 const Sneaker = require('../models/sneakers.js');
-const Brand = require('../models/brands.js');
+const Brand = require('../models/session.js');
 const Comment = require('../models/comments.js');
 
 // middleware
@@ -18,8 +18,12 @@ router.get('/', async (req, res) => {
     // res.send('sneakers index');
     res.render(
         'sneakers/index.ejs', {
-            allSneakers
+            sneakers: allSneakers,
+            username: req.session.username
         });
+} else {
+  res.redirect('/user/login');
+}
 });
 
 // new route
@@ -30,12 +34,13 @@ router.get('/new', async (req, res) => {
 // show route
 router.get('/:id', async (req, res) => {
     const oneSneaker = await Sneaker.findById(req.params.id);
-    const brands = await Brand.find({
+    const brands = await Comment.find({
         sneaker: oneSneaker._id
     });
     res.render('sneaker/show.ejs', {
-        oneSneaker,
-        brands
+        oneSneaker: oneSneaker,
+        comments: comments,
+        username: req.session.username
     });
 });
 
@@ -48,7 +53,5 @@ router.post('/', async (req, res) => {
         res.send(err.message);
     }
 });
-
-
 
 module.exports = router;

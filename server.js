@@ -2,6 +2,8 @@
 const express  = require('express');
 const mongoose = require('mongoose');
 const morgan   = require('morgan');
+const session  = require('express-session');
+const bcrypt 	 = require('bcrypt');
 const app      = express();
 const PORT     = process.env.PORT || 3000;
 
@@ -17,19 +19,25 @@ const db = mongoose.connection;
 db.on('error', (err) => console.log(err.message));
 db.on('connected', () => console.log('Mongo running: ', mongoURI));
 
-// controllers
-const sneakersController = require('./controllers/sneakers.js');
-const brandsController = require('./controllers/brands.js');
-const commentsController = require('./controllers/comments.js');
-
 // middleware
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
+
+secret: "akjfdskfjdsfjsfk", //random string here
+resave: false,
+saveUninitialized: false
+}));
+
+// controllers
+const sneakersController = require('./controllers/sneakers.js');
+const commentsController = require('./controllers/comments.js');
+const sessionsController = require('./controllers/session.js');
+
 app.use('/sneakers', sneakersController);
-app.use('/brands', brandsController);
 app.use('/comments', commentsController);
+app.use('/user', sessionsController);
 
 // root route
 app.get('/', (req, res) => res.redirect('/sneakers'));

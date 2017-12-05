@@ -11,5 +11,19 @@
   </head>
   <body>
     <h2>Sneaker Page</h2>
+    <img src='<%= oneSneaker.url %>' />
+
+    <% for (let comment of comments) { %>
+      <p><strong><%= comment.author %></strong> - <%= comment.content %></p>
+    <% } %>
+
+    <h3>Add a comment!</h3>
+
+    <form action='/comments' method='post'>
+      <input type='text' name='content' placeholder='content' />
+      <input type='text' name='author' placeholder='author' />
+      <input type='hidden' name='sneaker' value='<%= oneSneaker._id %>' />
+      <input type='submit' />
+    </form>
   </body>
 </html>

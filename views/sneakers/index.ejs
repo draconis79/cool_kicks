@@ -11,5 +11,22 @@
   </head>
   <body>
     <h2>Sneakers Index</h2>
+    <header>
+      <% if (username) { %>
+        Welcome, <%= username %>. <a href="/user/logout">Log out</a>
+      <% } %>
+    </header>
+
+    <% for (let i = 0; i < sneakers.length; i++) { %>
+      <a href="/sneakers/<%= sneakers[i].id %>/"><img src="<%= sneakers[i].url %>" /></a>
+    <% } %>
+
+
+    <form action="/sneakers" method="post">
+      URL: <input name="url" /><br/>
+      Author: <input name="submitted_by" placeholder="<%= username %>" />
+
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>

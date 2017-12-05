@@ -20,6 +20,7 @@ db.on('connected', () => console.log('Mongo running: ', mongoURI));
 // controllers
 const sneakersController = require('./controllers/sneakers.js');
 const brandsController = require('./controllers/brands.js');
+const commentsController = require('./controllers/comments.js');
 
 // middleware
 app.use(express.urlencoded({ extended: false}));
@@ -28,6 +29,7 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use('/sneakers', sneakersController);
 app.use('/brands', brandsController);
+app.use('/comments', commentsController);
 
 // root route
 app.get('/', (req, res) => res.redirect('/sneakers'));

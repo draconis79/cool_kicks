@@ -5,6 +5,7 @@ const router = express.Router();
 // models
 const Sneaker = require('../models/sneakers.js');
 const Brand = require('../models/brands.js');
+const Comment = require('../models/comments.js');
 
 // create route
 router.post('/', async (req, res) => {

@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 // models
 const Sneaker = require('../models/sneakers.js');
 const Brand = require('../models/brands.js');
+const Comment = require('../models/comments.js');
 
 // middleware
 router.use(methodOverride('_method'));

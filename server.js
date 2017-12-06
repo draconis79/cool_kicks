@@ -38,16 +38,14 @@ app.use(session({
 
 // controllers
 const sneakersController = require('./controllers/sneakers.js');
-const commentsController = require('./controllers/comments.js');
 const sessionsController = require('./controllers/session.js');
 
 app.use(methodOverride('_method'));
 app.use('/sneakers', sneakersController);
-app.use('/comments', commentsController);
-app.use('/user', sessionsController);
+app.use('/session', sessionsController);
 
 // root route
-app.get('/', (req, res) => res.redirect('/sneakers/home'));
+app.get('/', (req, res) => res.redirect('/sneakers/index'));
 
 
 

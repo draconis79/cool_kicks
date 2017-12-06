@@ -1,28 +1,31 @@
 const express = require('express');
-const router  = express.Router();
 const methodOverride = require('method-override');
+const router  = express.Router();
 
 // models
 const Sneaker = require('../models/sneakers.js');
 const Brand = require('../models/session.js');
 const Comment = require('../models/comments.js');
+const User = require('../models/user.js');
 
 // middleware
 router.use(methodOverride('_method'));
+router.use(express.static('public'));
 
 // routes
 
 // index route
-router.get('/', async (req, res) => {
-    const allSneakers = await Sneaker.find();
+router.get('/sneakers', async (req, res) => {
+  if(req.session.logged) {
+    const user = await User.find({username: req.session.username});
+    const userSneakers = await Sneaker.find({user: user[0]._id});
+    console.log(user);
+    console.log(userSneakers);
     // res.send('sneakers index');
     res.render(
-        'sneakers/index.ejs', {
-            sneakers: allSneakers,
-            username: req.session.username
-        });
+        'sneakers/index.ejs', {user, userSneakers});
 } else {
-  res.redirect('/user/login');
+ res.redirect('/user/login');
 }
 });
 
@@ -32,20 +35,18 @@ router.get('/new', async (req, res) => {
 })
 
 // show route
-router.get('/:id', async (req, res) => {
+router.get('/sneakers/:id', async (req, res) => {
     const oneSneaker = await Sneaker.findById(req.params.id);
-    const brands = await Comment.find({
+    const comments = await Comment.find({
         sneaker: oneSneaker._id
     });
-    res.render('sneaker/show.ejs', {
-        oneSneaker: oneSneaker,
-        comments: comments,
-        username: req.session.username
+    res.render('sneakers/show.ejs', {
+        sneakers, comments
     });
 });
 
 // create route
-router.post('/', async (req, res) => {
+router.post('/sneakers', async (req, res) => {
     try {
         const newSneaker = await Sneaker.create(req.body);
         res.redirect('/sneakers');

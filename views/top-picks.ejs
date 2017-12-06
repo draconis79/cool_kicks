@@ -10,15 +10,7 @@
     <title></title>
   </head>
   <body>
-    <h2>Sneakers Index</h2>
+
     <% include partials/nav.ejs %>
-    <header>
-
-    </header>
-
-    <% for (let i = 0; i < sneakers.length; i++) { %>
-      <a href="/sneakers/<%= sneakers[i]._id %>/"><img src="<%= sneakers[i].url %>" /></a>
-    <% } %>
-
   </body>
 </html>

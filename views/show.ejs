@@ -13,8 +13,18 @@
     <% include partials/nav.ejs %>
     <h2>Sneaker Page</h2>
     <img src='<%= oneSneaker.url %>' />
-
-    <% for (let comment of comments) { %>
+    <h4><%=oneSneaker.brand</h4>
+    <h4><%=oneSneaker.name</h4>
+    <h4><%=oneSneaker.color</h4>
+    <h4><%=oneSneaker.release_date</h4>
+    <h4><%=oneSneaker.submitted_by</h4>
+    <form action = '/sneakers/<%=oneSneaker.id;%>/edit'>
+      <button type='submit' value='edit' />Edit</button>
+    </form>
+    <form action = '/sneakers/<%=oneSneaker.id;%>?_method=DELETE' method='POST'>
+      <button type='submit' value='delete' />Delete</button>
+    </form>
+    <!-- <% for (let comment of comments) { %>
       <p><strong><%= comment.author %></strong> - <%= comment.content %></p>
     <% } %>
 
@@ -25,6 +35,6 @@
       <input type='text' name='author' placeholder='author' />
       <input type='hidden' name='sneaker' value='<%= oneSneaker._id %>' />
       <input type='submit' />
-    </form>
+    </form> -->
   </body>
 </html>

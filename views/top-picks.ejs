@@ -12,5 +12,18 @@
   <body>
 
     <% include partials/nav.ejs %>
+    <h1>Cool Kicks</h1>
+    <h3>Editor's Picks</h3>
+    <h2>Add your favorite sneakers</h2>
+    <form action='/sneakers' method='POST'>
+        <input type="text" name="brand" placeholder="Addidas" required/>
+        <input type="text" name="name" placeholder="Tubular Shadow" required/>
+        <input type="text" name="color" placeholder="Off White" required/>
+        <input type="text" name="release_date" placeholder="Release Date" required/>
+        <input type="text" name="submitted_by" placeholder=" Your Name" required/>
+        <input type="img" name="url" placeholder="Image Link" />
+        <button type="submit">Add Sneakers</button>
+       </form>
+
   </body>
 </html>

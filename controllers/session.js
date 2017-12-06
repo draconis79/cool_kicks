@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
-const User   = require('../models/user.js');
+const User   = require('../models/user');
 
 // login
 router.get('/login', (req, res) => {
@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
       req.session.username = req.body.username;
       req.session.logged  = true;
       console.log(req.session);
-      res.redirect('/')
+      res.redirect('/sneakers/home')
     } else {
      console.log('bad password')
      req.session.message = 'Username or password are incorrect';
@@ -43,7 +43,7 @@ router.get('/register', (req, res, next) => {
   });
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req, res, next) => {
 
 // first we are going to hash the password
 const password = req.body.password;
@@ -52,7 +52,7 @@ const username = req.body.username;
 // lets create a object for our db entry;
 const userDbEntry = {};
 
-userDbEntry.username = req.body.username;
+userDbEntry.username = username;
 userDbEntry.password = passwordHash;
 
 console.log(userDbEntry);
@@ -81,7 +81,7 @@ router.post('/', (req, res) => {
 // logout
 router.get('/logout', (req, res) => {
   req.session.destroy();
-  res.redirect('/sneakers/home');
+  res.redirect('/user/login');
 });
 
 router.get('/update', (req, res) => {

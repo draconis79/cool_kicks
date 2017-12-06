@@ -24,7 +24,7 @@ router.use(express.static('public'));
 // });
 
 // top-picks page route
-router.get('/about/:picks', async (req, res) => {
+router.get('/about/:picks', (req, res) => {
   console.log("================");
   console.log(req.session);
   console.log("================");
@@ -36,8 +36,10 @@ router.get('/about/:picks', async (req, res) => {
     } else {
     routeKey = 'about.ejs'
   }
-  res.render(routeKey, {
-    username: req.session.username
+  res.render('top-picks.ejs', {
+    username: req.session.username,
+    oneSneaker: oneSneaker,
+    comments: comments
   });
 });
 
@@ -51,7 +53,12 @@ router.get('/about/:picks', async (req, res) => {
 //   });
 // });
 
-
+router.get('/home', (req,res) => {
+  // res.send(req.session)
+  res.render('home.ejs', {
+    username: req.session.username
+  });
+});
 
 // index route
 router.get('/', async (req, res) => {
@@ -86,14 +93,13 @@ router.post('/', async (req, res) => {
 });
 
 // show route
-router.get('/:id', async (req, res) => {
+router.get('/about/picks/:id', async (req, res) => {
     const oneSneaker = await Sneaker.findById(req.params.id);
-    const comments = await Comment.find({
-        sneaker: oneSneaker._id
-    });
+    console.log(req.params.id);
+    const comments = await Comment.find({sneaker: oneSneaker._id});
     res.render('show.ejs', {
         oneSneaker: oneSneaker,
-        comments, comments,
+        comments: comments,
         username: req.session.username
     });
 });
@@ -110,10 +116,16 @@ router.get('/:id/edit', async (req, res) => {
   );
 });
 
+router.put('/:id', async (req, res) => {
+  let sneakers = await Sneaker.findByIdAndUpdate(req.params.id, req.body);
+  sneakers[req.params.id]=sneakers;
+  res.redirect('/about/picks');
+});
+
 // delete route
 router.delete('/:id', async (req, res) => {
   const deleteSneaker = await Sneaker.findByIdAndRemove(req.params.id);
-  res.redirect('/sneakers');
+  res.redirect('/about/picks');
 });
 
 module.exports = router;

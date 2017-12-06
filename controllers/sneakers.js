@@ -4,15 +4,54 @@ const router  = express.Router();
 
 // models
 const Sneaker = require('../models/sneakers.js');
-const Brand = require('../models/brands.js');
 const Comment = require('../models/comments.js');
-const User = require('../models/user.js');
+
 
 // middleware
 router.use(methodOverride('_method'));
 router.use(express.static('public'));
 
 // routes
+
+// home page route
+// router.get('/home', async (req, res) => {
+//   console.log("================");
+//   console.log(req.session);
+//   console.log("================");
+//   res.render('home.ejs', {
+//     username: req.session.username
+//   });
+// });
+
+// top-picks page route
+router.get('/about/:picks', async (req, res) => {
+  console.log("================");
+  console.log(req.session);
+  console.log("================");
+  let routeKey = "";
+  if (req.params.picks == "picks") {
+    routeKey = 'top-picks.ejs'
+  }  else if (req.params.picks == "home") {
+      routeKey = 'home.ejs'
+    } else {
+    routeKey = 'about.ejs'
+  }
+  res.render(routeKey, {
+    username: req.session.username
+  });
+});
+
+// // about page route
+// router.get('/about', async (req, res) => {
+//   console.log("================");
+//   console.log(req.session);
+//   console.log("================");
+//   res.render('about.ejs', {
+//     username: req.session.username
+//   });
+// });
+
+
 
 // index route
 router.get('/', async (req, res) => {

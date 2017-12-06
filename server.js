@@ -10,6 +10,9 @@ require('pretty-error').start();
 const PORT     = process.env.PORT || 3000;
 
 
+const hashedString = bcrypt.hashSync('mandy', bcrypt.genSaltSync(10));
+console.log(hashedString);
+
 // process.env.MONGOB_URI
 // connect to database
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cool-kicks';
@@ -39,13 +42,15 @@ app.use(session({
 // controllers
 const sneakersController = require('./controllers/sneakers.js');
 const sessionsController = require('./controllers/session.js');
+const commentsController = require('./controllers/comments.js');
 
 app.use(methodOverride('_method'));
 app.use('/sneakers', sneakersController);
-app.use('/session', sessionsController);
+app.use('/user', sessionsController);
+app.use('/comments', commentsController);
 
 // root route
-app.get('/', (req, res) => res.redirect('/sneakers/index'));
+app.get('/', (req, res) => res.redirect('/sneakers'));
 
 
 

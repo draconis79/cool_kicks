@@ -70,6 +70,14 @@ try {
  }
 });
 
+router.get('/', (req, res) => {
+  // this is where we render the login view
+});
+
+router.post('/', (req, res) => {
+  // this is where we analyze the session variables after posting the form to this route
+});
+
 // logout
 router.get('/logout', (req, res) => {
   req.session.destroy();

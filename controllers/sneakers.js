@@ -8,6 +8,10 @@ const methodOverride = require('method-override');
 //Models
 const Sneaker = require('../models/sneakers.js');
 
+// top-picks page route
+router.get('/top-picks', (req, res) => {
+  res.render('top-picks.ejs');
+});
 
 //Index route
 router.get('/', async (req, res) => {

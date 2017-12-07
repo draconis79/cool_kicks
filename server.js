@@ -6,10 +6,12 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 
 // config
-const PORT = 3000;
+const PORT     = process.env.PORT || 3000;
 
-// db
-const mongoURI = 'mongodb://localhost:27017/sneakers';
+
+// process.env.MONGOB_URI
+// connect to database
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sneakers';
 mongoose.connect(mongoURI, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 

@@ -1,136 +1,78 @@
 const express = require('express');
+const router  = express.Router();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const router  = express.Router();
-mongoose.Promise = global.Promise;
 
-// models
+
+//models
 const Sneaker = require('../models/sneakers.js');
-const Comment = require('../models/comments.js');
 
 
-// middleware
-router.use(methodOverride('_method'));
-router.use(express.static('public'));
-
-// routes
-
-// home page route
-router.get('/home', (req, res) => {
-  console.log("================");
-  console.log(req.session);
-  console.log("================");
-  res.render('home.ejs', {
-    username: req.session.username
-  });
-});
-
-// top-picks page route
-router.get('/about/:picks', (req, res) => {
-  console.log("================");
-  console.log(req.session);
-  console.log("================");
-  let routeKey = "";
-  if (req.params.picks == "picks") {
-    routeKey = 'top-picks.ejs'
-  }  else if (req.params.picks == "home") {
-      routeKey = 'home.ejs'
-    } else {
-    routeKey = 'about.ejs'
-  }
-  res.render(routeKey, {
-    username: req.session.username,
-    sneakers: Sneaker,
-    comments: Comment
-  });
-});
-
-// // about page route
-// router.get('/about', async (req, res) => {
-//   console.log("================");
-//   console.log(req.session);
-//   console.log("================");
-//   res.render('about.ejs', {
-//     username: req.session.username
-//   });
-// });
-
-router.get('/home', (req,res) => {
-  // res.send(req.session)
-  res.render('home.ejs', {
-    username: req.session.username
-  });
-});
-
-// index route
+//index route
 router.get('/', async (req, res) => {
-  const allSneakers = await Sneaker.find();
-  if(req.session.logged) {
-    // res.send('sneakers index');
-    res.render(
-        'index.ejs', {
-          sneaker: allSneakers,
-          username: req.session.username
-        });
-        console.log(allSneakers);
-} else {
- res.redirect('/user/login');
-}
+    const allSneakers = await Sneaker.find();
+    res.render('index.ejs', { allSneakers });
 });
 
-// new route
-router.get('/new', async (req, res) => {
-  res.render('new.ejs', {
-    username: req.session.username
-  });
+//index of sneakers_mongoose_router
+// Create New sneakers
+router.post('/', async (req, res) => {
+  console.log('POST route accessed'); //TA & friends helped
+  try {
+    const newSneaker = await Sneaker.create( req.body );
+    res.redirect('/sneakers')
+  } catch (err) {
+    res.render('new.ejs', {err: err.message});
+  }
 });
 
-// create route
-router.post('', async (req, res) => {
-    try {
-      console.log('Post route used');
-        const newSneaker = await Sneaker.create(req.body);
-        console.log(newSneaker);
-        res.redirect('/');
-    } catch (err) {
-        res.send(err.message);
-    }
+// New sneaker
+router.get('/new', (req, res) => {
+  // res.send('new');
+  res.render('new.ejs');
 });
 
-// show route
-router.get('/about/picks/:id', async (req, res) => {
-    const oneSneaker = await Sneaker.findById(req.params.id);
-    console.log(req.params.id);
-    const comments = await Comment.find({sneaker: oneSneaker._id});
-    res.render('show.ejs', {
-        oneSneaker: oneSneaker,
-        comments: comments,
-        username: req.session.username
-    });
+// New Sneaker
+router.post('/new', (req, res) => {
+  console.log('create route accessed');
+  console.log(req.body);
+  res.send(req.body);
 });
 
-// edit route
+// Show route for sneakers
+router.get('/:id', async (req, res) => {
+  let oneSneaker = await Sneaker.findById( req.params.id );
+  // res.send(oneSneaker);
+  res.render('show.ejs', { oneSneaker });
+});
+
+
+// Edit Sneaker
 router.get('/:id/edit', async (req, res) => {
   const sneakers = await Sneaker.findById(req.params.id);
   res.render(
     'edit.ejs',
     {
-      sneaker: sneakers,
-      username: req.session.username
+        sneaker: sneakers
     }
   );
 });
 
+// Edit submit Sneakers
 router.put('/:id', async (req, res) => {
   let sneakers = await Sneaker.findByIdAndUpdate(req.params.id, req.body);
-  sneakers[req.params.id]=sneakers;
-  res.redirect('/about/picks');
+ sneakers[req.params.id] = sneakers;
+ res.redirect('/sneakers/');
 });
 
-// delete route
+
+// Delete sneakers
 router.delete('/:id', async (req, res) => {
-  const deleteSneaker = await Sneaker.findByIdAndRemove(req.params.id);
-  res.redirect('/about/picks');
+  const sneaker = await Sneaker.findByIdAndRemove(req.params.id);
+  // sneakers.splice(req.params.index, 1);
+  res.redirect('/sneakers');
 });
+
+
 
 module.exports = router;

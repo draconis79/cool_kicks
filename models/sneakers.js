@@ -1,20 +1,14 @@
 const mongoose = require('mongoose');
 
-const sneakerSchema = mongoose.Schema({
-    brand: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    color: String,
-    price: Number,
-    releaseDate: String,
-    image: String,
-    submitted_by: String,
-    url: String
+// schema
+const sneakerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: String,
+  price: Number,
+  quantity: Number,
+  image: String
 });
 
+
+// export the model
 module.exports = mongoose.model('Sneaker', sneakerSchema);

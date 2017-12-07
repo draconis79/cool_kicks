@@ -1,40 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="/js/app.js"></script>
-    <meta charset="utf-8">
-    <title></title>
+    <% include partials/head.ejs %>
   </head>
   <body>
-    <% include partials/nav.ejs %>
-    <h2>Sneaker Page</h2>
-    <img src='<%= oneSneaker.url %>' />
-    <h4><%=oneSneaker.brand</h4>
-    <h4><%=oneSneaker.name</h4>
-    <h4><%=oneSneaker.color</h4>
-    <h4><%=oneSneaker.release_date</h4>
-    <h4><%=oneSneaker.submitted_by</h4>
-    <form action = '/sneakers/<%=oneSneaker.id;%>/edit'>
-      <button type='submit' value='edit' />Edit</button>
-    </form>
-    <form action = '/sneakers/<%=oneSneaker.id;%>?_method=DELETE' method='POST'>
-      <button type='submit' value='delete' />Delete</button>
-    </form>
-    <!-- <% for (let comment of comments) { %>
-      <p><strong><%= comment.author %></strong> - <%= comment.content %></p>
-    <% } %>
+<% include partials/nav.ejs %>
 
-    <h3>Add a comment!</h3>
+<h2> <%= oneSneaker.name %> </h2>
+<h4> <%= oneSneaker.description %> </h4>
+<h4> Price: $<%= oneSneaker.price %> </h4>
+<h4> Quantity: <%= oneSneaker.quantity %> </h4>
 
-    <form action='/comments' method='post'>
-      <input type='text' name='content' placeholder='content' />
-      <input type='text' name='author' placeholder='author' />
-      <input type='hidden' name='sneaker' value='<%= oneSneaker._id %>' />
-      <input type='submit' />
-    </form> -->
+<br>
+
+<img class="imgShowPage" src= <%= oneSneaker.image %> alt="sneaker"/>
+
+<form action="/sneakers/<%=oneSneaker.id; %>/edit">
+  <input type="submit" value="Edit" />
+</form>
+<br>
+<form action="/sneakers/<%= oneSneaker.id;%>?_method=DELETE" method="POST">
+  <input type="submit" value="Delete Sneaker" />
+</form>
+<br>
+    <a href="/sneakers/"><div class=backbtn> Back</div></a>
+    <br>
   </body>
 </html>

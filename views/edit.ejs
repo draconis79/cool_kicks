@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="/js/app.js"></script>
-    <meta charset="utf-8">
-    <title></title>
+    <% include partials/head.ejs %>e>
   </head>
   <body>
     <% include partials/nav.ejs %>
+    <br><br>
+    <h2>Edit your Sneaker</h2>
+    <br>
+
+    <form action="/sneakers/<%= sneaker.id %>?_method=PUT" method="POST">
+      <!--  NOTE: the form is pre-populated with values for the server-->
+        Name: <input type="text" name="name" value="<%= sneaker.name %>"/><br/>
+        Description: <input type="text" name="description" value="<%= sneaker.description %>"/><br/>
+        Price: <input type="text" name="price" value="<%= sneaker.price %>"/><br/>
+        Quantity: <input type="text" name="quantity" value="<%= sneaker.quantity %>"/><br/>
+        Image Link: <input type="img" name="image" value="<%= sneaker.image %>"/><br/>
+        <br><br>
+        <input type="submit" name="" value="Submit Changes">
+
+    </form>
   </body>
 </html>

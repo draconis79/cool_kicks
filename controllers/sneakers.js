@@ -13,6 +13,11 @@ router.get('/top-picks', (req, res) => {
   res.render('top-picks.ejs');
 });
 
+// about page route
+router.get('/about', (req, res) => {
+  res.render('about.ejs');
+});
+
 //Index route
 router.get('/', async (req, res) => {
     const allSneakers = await Sneaker.find();

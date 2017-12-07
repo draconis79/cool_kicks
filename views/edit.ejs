@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include partials/head.ejs %>e>
+    <% include partials/head.ejs %>
   </head>
   <body>
     <% include partials/nav.ejs %>
@@ -11,10 +11,11 @@
 
     <form action="/sneakers/<%= sneaker.id %>?_method=PUT" method="POST">
       <!--  NOTE: the form is pre-populated with values for the server-->
-        Name: <input type="text" name="name" value="<%= sneaker.name %>"/><br/>
-        Description: <input type="text" name="description" value="<%= sneaker.description %>"/><br/>
-        Price: <input type="text" name="price" value="<%= sneaker.price %>"/><br/>
-        Quantity: <input type="text" name="quantity" value="<%= sneaker.quantity %>"/><br/>
+        Sneaker Name: <input type="text" name="name" value="<%= sneaker.name %>"/><br/>
+        Brand Name: <input type="text" name="brand" value="<%= sneaker.brand %>"/><br/>
+        Color: <input type="text" name="color" value="<%= sneaker.color %>"/><br/>
+        Release Date: <input type="text" name="release_date" value="<%= sneaker.release_date %>"/><br/>
+        Submitted By: <input type="text" name="submitted_by" value="<%= sneaker.submitted_by %>"/><br/>
         Image Link: <input type="img" name="image" value="<%= sneaker.image %>"/><br/>
         <br><br>
         <input type="submit" name="" value="Submit Changes">

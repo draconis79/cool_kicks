@@ -1,23 +1,24 @@
+//dependencies
 const express = require('express');
 const router  = express.Router();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
 
-//models
+//Models
 const Sneaker = require('../models/sneakers.js');
 
 
-//index route
+//Index route
 router.get('/', async (req, res) => {
     const allSneakers = await Sneaker.find();
     res.render('index.ejs', { allSneakers });
 });
 
-//index of sneakers_mongoose_router
+//Index of sneakers_mongoose_router
 // Create New sneakers
 router.post('/', async (req, res) => {
-  console.log('POST route accessed'); //TA & friends helped
+  console.log('POST route accessed');
   try {
     const newSneaker = await Sneaker.create( req.body );
     res.redirect('/sneakers')
@@ -40,6 +41,7 @@ router.post('/new', (req, res) => {
 });
 
 // Show route for sneakers
+// Individual sneaker
 router.get('/:id', async (req, res) => {
   let oneSneaker = await Sneaker.findById( req.params.id );
   // res.send(oneSneaker);

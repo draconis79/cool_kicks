@@ -6,14 +6,15 @@
   <body>
     <% include partials/nav.ejs %>
     <h2>Create Your Own Sneaker</h2>
-      <div class="newInput">
+      <div class="input-group">
 
           <form action='/sneakers' method='post'>
-            <input class="newInput"type="text" name="name" placeholder="Name" required/>
-            <input class="newInput"type="text" name="description" placeholder="Description" required/>
-            <input class="newInput"type="number" name="price" placeholder="Price" required/>
-            <input class="newInput"type="number" name="quantity" placeholder="Quantity" required/>
-            <input class="newInput" type="img" name="image" placeholder="Image Link"/><br/>
+            <input class="newInput"type="text" name="name" placeholder="Tubular Shadow" required/>
+            <input class="newInput"type="text" name="brand" placeholder="Addidas" required/>
+            <input class="newInput"type="text" name="color" placeholder="Off White" required/>
+            <input class="newInput"type="text" name="release_date" placeholder="September 17, 2017" required/>
+            <input class="newInput"type="text" name="submitted_by" placeholder="sneakerhead" required/>
+            <input class="newInput" type="img" name="image" placeholder="Image URL"/><br/>
 
               <button type="submit">Create New Sneaker</button>
           </form>

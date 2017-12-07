@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head.ejs %>
+
+  </head>
+  <body>
+    <% include partials/nav.ejs %>
+
+    <form class="input-group" action="/user/login" method="post">
+  Username: <input name="username" /> <br />
+  Password: <input name="password" /><br />
+
+  <button type="submit">Submit</button>
+</form>
+
+<form class="input-group" action="/user/register" method="post">
+  Username: <input name="username" /> <br />
+  Password: <input name="password" /><br />
+
+  <button type="submit">Register</button>
+</form>
+
+
+  </body>
+</html>

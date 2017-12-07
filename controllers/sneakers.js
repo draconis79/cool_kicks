@@ -8,9 +8,20 @@ const methodOverride = require('method-override');
 //Models
 const Sneaker = require('../models/sneakers.js');
 
+// login
+router.get('/login', (req, res) => {
+res.render('login.ejs');
+});
+
+// logout
+router.get('/logout', (req, res) => {
+  res.redirect('/sneakers/');
+});
+
 // top-picks page route
-router.get('/top-picks', (req, res) => {
-  res.render('top-picks.ejs');
+router.get('/top-picks', async (req, res) => {
+  const allSneakers = await Sneaker.find();
+  res.render('top-picks.ejs', { allSneakers });
 });
 
 // about page route
@@ -30,7 +41,8 @@ router.post('/', async (req, res) => {
   console.log('POST route accessed');
   try {
     const newSneaker = await Sneaker.create( req.body );
-    res.redirect('/sneakers')
+    // res.redirect('/sneakers')
+    res.redirect('/sneakers/top-picks')
   } catch (err) {
     res.render('new.ejs', {err: err.message});
   }
@@ -73,7 +85,8 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id', async (req, res) => {
   let sneakers = await Sneaker.findByIdAndUpdate(req.params.id, req.body);
  sneakers[req.params.id] = sneakers;
- res.redirect('/sneakers/');
+ // res.redirect('/sneakers/');
+ res.redirect('/sneakers/top-picks/');
 });
 
 
@@ -81,7 +94,8 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const sneaker = await Sneaker.findByIdAndRemove(req.params.id);
   // sneakers.splice(req.params.index, 1);
-  res.redirect('/sneakers');
+  // res.redirect('/sneakers');
+  res.redirect('/top-picks');
 });
 
 

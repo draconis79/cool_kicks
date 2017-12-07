@@ -1,6 +1,6 @@
 .input-group {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;
+  flex-direction: column;*/
   width: 500px;
   margin: auto;
 }
@@ -12,4 +12,9 @@
 .imgShowPage {
   margin: auto;
   display: block;
+}
+
+.newInput {
+  display: inline-block;
+  width: 50%;
 }

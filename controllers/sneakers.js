@@ -95,7 +95,7 @@ router.delete('/:id', async (req, res) => {
   const sneaker = await Sneaker.findByIdAndRemove(req.params.id);
   // sneakers.splice(req.params.index, 1);
   // res.redirect('/sneakers');
-  res.redirect('/top-picks');
+  res.redirect('/sneakers/top-picks/');
 });
 
 

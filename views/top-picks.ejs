@@ -5,19 +5,23 @@
   </head>
   <body>
     <% include partials/nav.ejs %>
-    <h2>Create Your Own Sneaker</h2>
-      <div class="newInput">
 
-          <form action='/sneakers' method='post'>
-            <input class="newInput"type="text" name="name" placeholder="Tubular Shadow" required/>
-            <input class="newInput"type="text" name="brand" placeholder="Addidas" required/>
-            <input class="newInput"type="text" name="color" placeholder="Off White" required/>
-            <input class="newInput"type="text" name="release_date" placeholder="September 17, 2017" required/>
-            <input class="newInput"type="text" name="submitted_by" placeholder="sneakerhead" required/>
-            <input class="newInput" type="img" name="image" placeholder="Image URL"/><br/>
+    <%# for loop%>
+    <div class="container">
 
-              <button type="submit">Create New Sneaker</button>
-          </form>
+    <% for (let i = 0; i < allSneakers.length; i++) { %>
+  <div class="item">
+      <a href="/sneakers/<%= allSneakers[i].id %>"><h2> <%= allSneakers[i].name %> </h2></a>
+
+
+            <div class='cheeseImg'><a href="/sneakers/<%= allSneakers[i].id %>"><img src= <%= allSneakers[i].image %> alt="image goes here"></a></div>
+
+             <br><br>
+
       </div>
+    <% } %>
+
+
+    </div>
   </body>
 </html>

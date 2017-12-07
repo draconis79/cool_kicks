@@ -27,23 +27,7 @@
     <!-- END Learn More link -->
   </div>
 
-    <%# for loop%>
-    <div class="container">
-
-    <% for (let i = 0; i < allSneakers.length; i++) { %>
-  <div class="item">
-      <a href="/sneakers/<%= allSneakers[i].id %>"><h2> <%= allSneakers[i].name %> </h2></a>
-
-
-            <div class='cheeseImg'><a href="/sneakers/<%= allSneakers[i].id %>"><img src= <%= allSneakers[i].image %> alt="image goes here"></a></div>
-
-             <br><br>
-
-      </div>
-    <% } %>
-
-
-    </div>
+  
 
 
   </body>

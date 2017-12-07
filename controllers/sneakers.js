@@ -1,6 +1,8 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const router  = express.Router();
+mongoose.Promise = global.Promise;
 
 // models
 const Sneaker = require('../models/sneakers.js');
@@ -14,14 +16,14 @@ router.use(express.static('public'));
 // routes
 
 // home page route
-// router.get('/home', async (req, res) => {
-//   console.log("================");
-//   console.log(req.session);
-//   console.log("================");
-//   res.render('home.ejs', {
-//     username: req.session.username
-//   });
-// });
+router.get('/home', (req, res) => {
+  console.log("================");
+  console.log(req.session);
+  console.log("================");
+  res.render('home.ejs', {
+    username: req.session.username
+  });
+});
 
 // top-picks page route
 router.get('/about/:picks', (req, res) => {
@@ -36,10 +38,10 @@ router.get('/about/:picks', (req, res) => {
     } else {
     routeKey = 'about.ejs'
   }
-  res.render('top-picks.ejs', {
+  res.render(routeKey, {
     username: req.session.username,
-    oneSneaker: oneSneaker,
-    comments: comments
+    sneakers: Sneaker,
+    comments: Comment
   });
 });
 
@@ -67,9 +69,10 @@ router.get('/', async (req, res) => {
     // res.send('sneakers index');
     res.render(
         'index.ejs', {
-          sneaker, allSneakers,
+          sneaker: allSneakers,
           username: req.session.username
         });
+        console.log(allSneakers);
 } else {
  res.redirect('/user/login');
 }
@@ -83,9 +86,11 @@ router.get('/new', async (req, res) => {
 });
 
 // create route
-router.post('/', async (req, res) => {
+router.post('', async (req, res) => {
     try {
+      console.log('Post route used');
         const newSneaker = await Sneaker.create(req.body);
+        console.log(newSneaker);
         res.redirect('/');
     } catch (err) {
         res.send(err.message);

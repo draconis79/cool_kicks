@@ -15,10 +15,10 @@
     <header>
 
     </header>
-
-    <% for (let i = 0; i < sneakers.length; i++) { %>
-      <a href="/sneakers/<%= sneakers[i]._id %>/"><img src="<%= sneakers[i].url %>" /></a>
+    <ul>
+    <% for (let i = 0; i < sneaker.length; i++) { %>
+      <li><a href="/sneaker/<%= sneaker[i]._id %>/"><%= sneaker[i].name %></a></li>
     <% } %>
-
+    </ul>
   </body>
 </html>

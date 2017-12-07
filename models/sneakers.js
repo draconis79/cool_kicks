@@ -13,7 +13,8 @@ const sneakerSchema = mongoose.Schema({
     price: Number,
     releaseDate: String,
     image: String,
-    submitted_by: String
+    submitted_by: String,
+    url: String
 });
 
 module.exports = mongoose.model('Sneaker', sneakerSchema);

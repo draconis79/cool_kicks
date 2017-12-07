@@ -6,22 +6,22 @@
   <body>
 <% include partials/nav.ejs %>
 
-<h4>Sneaker Name: <%= oneSneaker.name %> </h4>
-<h4>Brand Name: <%= oneSneaker.brand %> </h4>
-<h4>Color: <%= oneSneaker.color %> </h4>
-<h4>Release Date: <%= oneSneaker.release_date %> </h4>
-<h4>Username: <%= oneSneaker.submitted_by %> </h4>
+<h3 class="h3c">Sneaker Name: <%= oneSneaker.name %> </h3>
+<h4 class="h3c">Brand Name: <%= oneSneaker.brand %> </h4>
+<h4 class="h3c">Color: <%= oneSneaker.color %> </h4>
+<h4 class="h3c">Release Date: <%= oneSneaker.release_date %> </h4>
+<h4 class="h3c">Username: <%= oneSneaker.submitted_by %> </h4>
 
 
 <br>
 
 <img class="imgShowPage" src= <%= oneSneaker.image %> alt="sneaker"/>
 
-<form action="/sneakers/<%=oneSneaker.id; %>/edit">
+<form class="input-group" action="/sneakers/<%=oneSneaker.id; %>/edit">
   <input type="submit" value="Edit" />
 </form>
 <br>
-<form action="/sneakers/<%= oneSneaker.id;%>?_method=DELETE" method="POST">
+<form class="input-group" action="/sneakers/<%= oneSneaker.id;%>?_method=DELETE" method="POST">
   <input type="submit" value="Delete Sneaker" />
 </form>
 <br>

@@ -1,3 +1,15 @@
 .input-group {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+}
+
+.h2c, .h3c, .h4c, .backbtn  {
+  text-align: center;
+}
+
+.imgShowPage {
+  margin: auto;
   display: block;
 }

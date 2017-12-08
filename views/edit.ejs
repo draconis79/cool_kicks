@@ -9,14 +9,14 @@
     <h2 class="h2c">Edit your Sneaker</h2>
     <br>
 
-    <form action="/sneakers/<%= sneaker.id %>?_method=PUT" method="POST">
+    <form class="input-group" action="/sneakers/<%= sneaker.id %>?_method=PUT" method="POST">
       <!--  NOTE: the form is pre-populated with values for the server-->
-        Sneaker Name: <input type="text" name="name" value="<%= sneaker.name %>"/><br/>
-        Brand Name: <input type="text" name="brand" value="<%= sneaker.brand %>"/><br/>
-        Color: <input type="text" name="color" value="<%= sneaker.color %>"/><br/>
-        Release Date: <input type="text" name="release_date" value="<%= sneaker.release_date %>"/><br/>
-        Submitted By: <input type="text" name="submitted_by" value="<%= sneaker.submitted_by %>"/><br/>
-        Image Link: <input type="img" name="image" value="<%= sneaker.image %>"/><br/>
+        Sneaker Name: <input class="input-group" type="text" name="name" value="<%= sneaker.name %>"/><br/>
+        Brand Name: <input class="input-group" type="text" name="brand" value="<%= sneaker.brand %>"/><br/>
+        Color: <input class="input-group" type="text" name="color" value="<%= sneaker.color %>"/><br/>
+        Release Date: <input class="input-group" type="text" name="release_date" value="<%= sneaker.release_date %>"/><br/>
+        Submitted By: <input class="input-group" type="text" name="submitted_by" value="<%= sneaker.submitted_by %>"/><br/>
+        Image Link: <input class="input-group" type="img" name="image" value="<%= sneaker.image %>"/><br/>
         <br><br>
         <input type="submit" name="" value="Submit Changes">
 

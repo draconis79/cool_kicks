@@ -1,12 +1,28 @@
 .input-group {
-  /*display: flex;
-  flex-direction: column;*/
-  width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
   margin: auto;
 }
 
-.h2c, .h3c, .h4c, .backbtn  {
+.h2c {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.h3c {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.h4c {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.backbtn  {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .imgShowPage {
@@ -16,5 +32,45 @@
 
 .newInput {
   display: inline-block;
-  width: 50%;
+  width: 100%;
+}
+
+
+.main_container {
+display: flex;
+}
+
+
+.card-img-top {
+width: 500px;
+margin: auto;
+}
+
+h1, h2, h3, h4, h5 {
+font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+  color: darkgrey;
+}
+
+.h3-about {
+  color: darkblue;
+}
+
+.aboutImg {
+  margin: auto;
+  width: 250px;
+}
+
+.about-text {
+  width: 500px;
+  margin: auto;
+}
+
+.card, .card-title {
+  display: block;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
 }

@@ -5,23 +5,22 @@
   </head>
   <body>
     <% include partials/nav.ejs %>
-
     <%# for loop%>
-    <div class="container">
 
-    <% for (let i = 0; i < allSneakers.length; i++) { %>
-  <div class="item">
-      <a href="/sneakers/<%= allSneakers[i].id %>"><h2> <%= allSneakers[i].name %> </h2></a>
+         <div class="container">
+           <% for (let i = 0; i < allSneakers.length; i++) { %>
+           <div class="text-center">
+             <a href="/sneakers/<%= allSneakers[i].id %>"><h2> <%= allSneakers[i].name %> </h2></a>
+             <a href="/sneakers/<%= allSneakers[i].id %>"><h3> <%= allSneakers[i].brand %> </h3></a>
+              <div class='sneakerImg'><a href="/sneakers/<%= allSneakers[i].id %>"><img src= <%= allSneakers[i].image %> alt="image goes here"></a></div>
+
+                    <br><br>
+
+             </div>
+           <% } %>
 
 
-            <div class='cheeseImg'><a href="/sneakers/<%= allSneakers[i].id %>"><img src= <%= allSneakers[i].image %> alt="image goes here"></a></div>
+           </div>
 
-             <br><br>
-
-      </div>
-    <% } %>
-
-
-    </div>
   </body>
 </html>

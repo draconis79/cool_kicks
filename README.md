@@ -17,6 +17,12 @@ Cool Kicks is a sneaker app where users can check out the editor's pick, release
 
 <br>
 
+## Approach
+
+The main page encourages the user to post their own sneaker. The top picks page shows all the sneakers curated by the editor and sneakers created by the users. The show page allows the user to edit and delete their post.
+
+<br>
+
 ## Technical Challenges
 
 - I successfully created login and user accounts but had to abandon the code after I struggled getting my routes working.
@@ -32,6 +38,7 @@ Cool Kicks is a sneaker app where users can check out the editor's pick, release
 - Users can like a post
 - Build on the theme with CSS/Bootstrap
 - Complete login/logout
+- Create a map that shows users where to get the sneakers
 
 <br>
 
